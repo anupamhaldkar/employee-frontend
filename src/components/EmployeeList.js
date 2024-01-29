@@ -2,7 +2,11 @@ import React from 'react'
 
 const EmployeeList = () => {
   return (
-    <div>EmployeeList</div>
+    <div className='container mx-auto my-8'>
+    <div className="h-12">
+        <button className='rounded bg-slate-700 text-white px-6 py-2 font-semibold'> Add Employee</button>
+    </div>
+    </div>
   )
 };
 

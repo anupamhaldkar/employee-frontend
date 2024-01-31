@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import EmployeeService from '../services/EmployeeService';
+import { useNavigate } from 'react-router-dom';
 
 const AddEmployee = () => {
 
@@ -9,6 +10,8 @@ const AddEmployee = () => {
         lastName: "",
         emailId: ""
         });
+
+    const navigate = useNavigate();    
 
     const handleChange = (e) => {
         const value = e.target.value;
@@ -20,6 +23,7 @@ const AddEmployee = () => {
         console.log(employee);
         EmployeeService.saveEmployee(employee).then((response) => {
             console.log(response);
+            navigate("/employeeList");
         }).catch((error) => {
             console.log(error);
         });

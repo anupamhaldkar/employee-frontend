@@ -4,6 +4,7 @@ import EmployeeService from '../services/EmployeeService';
 
 const UpdateEmployee = () => {
     const {id} = useParams();
+    const navigate = useNavigate();
     const [employee, setEmployee] = useState({
         id: id,
         firstName: "",
@@ -12,6 +13,10 @@ const UpdateEmployee = () => {
         });
     const updateEmployee = (e) => {
         e.preventDefault();
+        EmployeeService.updateEmployee(id, employee)
+        .then((response) => {
+            navigate("/employeeList");
+        })
     };
 
     useEffect(() => {
@@ -20,7 +25,7 @@ const UpdateEmployee = () => {
                 const response = await EmployeeService.getEmployeeById(id);
                 setEmployee(response.data);
             }catch(e){
-
+                console.log(e);
             }
         };
         fetchData();
@@ -71,7 +76,7 @@ const UpdateEmployee = () => {
                 </button>
                 
                 <button 
-                
+                onClick={()=> navigate("/employeeList")}
                 className="rounded font-semibold text-white my-2 bg-red-400 hover:bg-red-700 py-2 px-6">
                     Cancel
                 </button>
